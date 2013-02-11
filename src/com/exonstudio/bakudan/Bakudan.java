@@ -44,11 +44,6 @@ public class Bakudan {
 		}
 	}
 
-	public void create() throws LWJGLException {
-		// keyboard
-		Keyboard.create();
-	}
-
 	public void moveVierkant() {
 		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
 			vierkantx += 0.02f;
