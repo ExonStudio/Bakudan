@@ -7,6 +7,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import com.exonstudio.bakudan.graphics.SpriteSheet;
 import com.exonstudio.bakudan.logger.Logger;
 import com.exonstudio.tools.Time;
 
@@ -29,6 +30,7 @@ public class Bakudan {
 
 		initScreen();
 		initGL();
+		SpriteSheet.init();
 	}
 
 	public void initScreen() {
