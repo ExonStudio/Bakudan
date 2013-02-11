@@ -20,6 +20,7 @@ public class Bakudan {
 	public Bakudan() {
 		size = new DisplayMode(WIDTH, HEIGHT);
 		init();
+		initGL();
 	}
 
 	public void init() {
@@ -39,11 +40,10 @@ public class Bakudan {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-
 		glOrtho(0, Display.getWidth(), Display.getHeight(), 0, 1, -1);
 		glColor3f(1, 1, 1);
 		glTranslatef(1, 1, 1);
+		glLoadIdentity();
 
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
@@ -67,11 +67,13 @@ public class Bakudan {
 			render();
 		}
 	}
-
+	
+	// Tick update de game, bijvoorbeeld coördinaten van speler en het rondlopen van mobs.
 	public void tick() {
 		Logger.log("TICK");
 	}
 
+	// Render zet alles op het scherm
 	public void render() {
 		Display.update();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
