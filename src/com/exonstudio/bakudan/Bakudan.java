@@ -3,11 +3,11 @@ package com.exonstudio.bakudan;
 import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.LWJGLException;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
 import com.exonstudio.bakudan.logger.Logger;
+import com.exonstudio.tools.Time;
 
 public class Bakudan {
 
@@ -15,8 +15,10 @@ public class Bakudan {
 	public static final int HEIGHT = 600;
 	public static final String TITLE = "Bakudan";
 	public boolean running = false;
+	public long lastTick = 0;
 
 	private DisplayMode size;
+	public TickTimer tickTimer = new TickTimer();
 
 	public Bakudan() {
 		size = new DisplayMode(WIDTH, HEIGHT);
@@ -52,31 +54,34 @@ public class Bakudan {
 	}
 
 	public void start() {
-		if (running) return;
+		if (running)
+			return;
 		running = true;
 		gameLoop();
 	}
 
-	// TODO: Mitchell stel even de juiste tick time etc. in?
 	public void gameLoop() {
 		while (running) {
+			Display.update();
 			if (Display.isCloseRequested()) {
 				stop();
-				return;
+			} else if (!Display.isActive()) {
+				// Pause game
+			} else {
+				if (Time.calculatePassedTime(lastTick) >= 17) {
+					lastTick = Time.getTime();
+					tick();
+				}
+				render();
 			}
-			Display.sync(60);
-			tick();
-			render();
 		}
+
 	}
 
 	// Tick update de game, bijvoorbeeld coördinaten van speler en het rondlopen
 	// van mobs.
 	public void tick() {
 		Logger.log("TICK");
-		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
-			stop();
-		}
 	}
 
 	// Render zet alles op het scherm
@@ -87,7 +92,8 @@ public class Bakudan {
 	}
 
 	public void stop() {
-		if (!running) return;
+		if (!running)
+			return;
 		running = false;
 		System.exit(0);
 	}
