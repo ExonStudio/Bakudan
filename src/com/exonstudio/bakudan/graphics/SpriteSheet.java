@@ -30,7 +30,7 @@ public class SpriteSheet {
 	private static void loadSheetData(String fname, String ext) {
 		SAXBuilder builder = new SAXBuilder();
 		try {
-			Document document = builder.build(SpriteSheet.class.getResourceAsStream("/img/" + fname + "." + ext));
+			Document document = builder.build(SpriteSheet.class.getResourceAsStream("/textures/" + fname + "." + ext));
 			Element root = document.getRootElement();
 			for (Object spriteObject : root.getChildren()) {
 				Element spriteElement = (Element) spriteObject;
@@ -54,7 +54,7 @@ public class SpriteSheet {
 
 	private static void loadSheetImage(String name, String ext) {
 		try {
-			spritesheet = TextureLoader.getTexture(ext.toUpperCase(), SpriteSheet.class.getResourceAsStream("/img/" + name + "." + ext));
+			spritesheet = TextureLoader.getTexture(ext.toUpperCase(), SpriteSheet.class.getResourceAsStream("/textures/" + name + "." + ext));
 			// Console.log("Loaded SpriteSheet");
 		} catch (IOException e) {
 			// Console.log(e.getMessage());
