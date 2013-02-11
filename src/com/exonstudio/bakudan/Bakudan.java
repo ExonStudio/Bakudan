@@ -54,21 +54,19 @@ public class Bakudan {
 	}
 
 	public void start() {
-		if (running)
-			return;
+		if (running) return;
 		running = true;
 		gameLoop();
 	}
 
 	public void gameLoop() {
 		while (running) {
-			Display.update();
 			if (Display.isCloseRequested()) {
 				stop();
 			} else if (!Display.isActive()) {
 				// Pause game
 			} else {
-				if (Time.calculatePassedTime(lastTick) >= 17) {
+				if (Time.calculatePassedTime(lastTick) >= 1000 / 60) {
 					lastTick = Time.getTime();
 					tick();
 				}
@@ -92,8 +90,7 @@ public class Bakudan {
 	}
 
 	public void stop() {
-		if (!running)
-			return;
+		if (!running) return;
 		running = false;
 		System.exit(0);
 	}
