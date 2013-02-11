@@ -75,6 +75,10 @@ public class Bakudan {
 		glTranslatef(1, 1, 1);
 		glLoadIdentity();
 
+		glEnable(GL_TEXTURE_2D); // Enable 2D Texture Rendering
+		glEnable(GL_BLEND); // Enable GL Blending
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 	}
@@ -116,8 +120,10 @@ public class Bakudan {
 		Display.update();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glLoadIdentity();
-		glTranslatef(vierkantx, vierkanty, 0);
-		glRectf(-0.75f / 5, -0.75f / 5, 0.75f / 5, 0.75f / 5);
+		// glTranslatef(vierkantx, vierkanty, 0);
+		// glRectf(-0.75f / 5, -0.75f / 5, 0.75f / 5, 0.75f / 5);
+
+		SpriteSheet.draw(SpriteSheet.getSprite("test"), Math.round(vierkantx * Display.getWidth()), Math.round(vierkanty * Display.getHeight()));
 	}
 
 	public void stop() {
