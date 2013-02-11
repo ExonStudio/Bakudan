@@ -3,6 +3,7 @@ package com.exonstudio.bakudan;
 import static org.lwjgl.opengl.GL11.*;
 
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
@@ -60,7 +61,7 @@ public class Bakudan {
 	public void gameLoop() {
 		while (running) {
 			if (Display.isCloseRequested()) {
-				running = false;
+				stop();
 				return;
 			}
 			Display.sync(60);
@@ -73,6 +74,9 @@ public class Bakudan {
 	// van mobs.
 	public void tick() {
 		Logger.log("TICK");
+		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
+			stop();
+		}
 	}
 
 	// Render zet alles op het scherm
