@@ -19,11 +19,12 @@ public class Bakudan {
 
 	public Bakudan() {
 		size = new DisplayMode(WIDTH, HEIGHT);
-		init();
+
+		initScreen();
 		initGL();
 	}
 
-	public void init() {
+	public void initScreen() {
 		try {
 			Display.setDisplayMode(size);
 			Display.setTitle(TITLE);
@@ -67,8 +68,9 @@ public class Bakudan {
 			render();
 		}
 	}
-	
-	// Tick update de game, bijvoorbeeld coördinaten van speler en het rondlopen van mobs.
+
+	// Tick update de game, bijvoorbeeld coördinaten van speler en het rondlopen
+	// van mobs.
 	public void tick() {
 		Logger.log("TICK");
 	}
