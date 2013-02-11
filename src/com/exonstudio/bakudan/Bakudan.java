@@ -10,7 +10,7 @@ import org.lwjgl.opengl.DisplayMode;
 import com.exonstudio.bakudan.logger.Logger;
 
 public class Bakudan {
-
+	//wilmar edit ok?
 	public static final int WIDTH = 800;
 	public static final int HEIGHT = 600;
 	public static final String TITLE = "Bakudan";
