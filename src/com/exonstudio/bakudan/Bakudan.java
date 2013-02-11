@@ -69,7 +69,8 @@ public class Bakudan {
 	}
 
 	public void initGL() {
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+		glDisable(GL_DEPTH_TEST);
 
 		glMatrixMode(GL_PROJECTION);
 		glOrtho(0, Display.getWidth(), Display.getHeight(), 0, 1, -1);
@@ -82,7 +83,8 @@ public class Bakudan {
 	}
 
 	public void start() {
-		if (running) return;
+		if (running)
+			return;
 		running = true;
 		gameLoop();
 	}
@@ -107,7 +109,8 @@ public class Bakudan {
 	// Tick update de game, bijvoorbeeld coördinaten van speler en het rondlopen
 	// van mobs.
 	public void tick() {
-		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) stop();
+		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
+			stop();
 		moveVierkant();
 	}
 
@@ -121,7 +124,8 @@ public class Bakudan {
 	}
 
 	public void stop() {
-		if (!running) return;
+		if (!running)
+			return;
 		running = false;
 		System.exit(0);
 	}
