@@ -62,18 +62,34 @@ public class SpriteSheet {
 	}
 
 	public static void draw(Sprite sprite, int x, int y) {
-		draw(sprite, x, y, sprite.getWidth(), sprite.getHeight());
+		draw(sprite, x, y, sprite.getWidth(), sprite.getHeight(), 0);
+	}
+
+	public static void draw(Sprite sprite, int x, int y, int r) {
+		draw(sprite, x, y, sprite.getWidth(), sprite.getHeight(), r);
 	}
 
 	public static void draw(int x, int y) {
-		draw(currentSprite, x, y, currentSprite.getWidth(), currentSprite.getHeight());
+		draw(currentSprite, x, y, currentSprite.getWidth(), currentSprite.getHeight(), 0);
+	}
+
+	public static void draw(int x, int y, int r) {
+		draw(currentSprite, x, y, currentSprite.getWidth(), currentSprite.getHeight(), r);
 	}
 
 	public static void draw(int x, int y, int w, int h) {
-		draw(currentSprite, x, y, w, h);
+		draw(currentSprite, x, y, w, h, 0);
+	}
+
+	public static void draw(int x, int y, int w, int h, int r) {
+		draw(currentSprite, x, y, w, h, r);
 	}
 
 	public static void draw(Sprite sprite, int x, int y, int w, int h) {
+		draw(sprite, x, y, w, h, 0);
+	}
+
+	public static void draw(Sprite sprite, int x, int y, int w, int h, int r) {
 		// glEnable(GL_TEXTURE_RECTANGLE_ARB);
 		spritesheet.bind();
 
@@ -83,6 +99,11 @@ public class SpriteSheet {
 		double Ty2 = (sprite.getY() * 1.0 + sprite.getHeight()) / spritesheet.getTextureHeight();
 		// x *= 2;
 		// y *= 2;
+
+		if (r != 0) {
+			glRotated(r, 0.0, 0.0, 1.0);
+		}
+
 		glLoadIdentity();
 		glBegin(GL_QUADS);
 		glTexCoord2d(Tx, Ty);
