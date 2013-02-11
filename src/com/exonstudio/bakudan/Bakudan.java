@@ -1,5 +1,11 @@
 package com.exonstudio.bakudan;
 
+import static org.lwjgl.opengl.GL11.*;
+
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
+
 public class Bakudan {
 
 	public static final int WIDTH = 800;
@@ -7,16 +13,34 @@ public class Bakudan {
 	public static final String TITLE = "Bakudan";
 	public boolean running = false;
 
-	public Bakudan() {
+	private DisplayMode size;
 
+	public Bakudan() {
+		size = new DisplayMode(WIDTH, HEIGHT);
+		init();
 	}
 
 	public void init() {
-
+		try {
+			Display.setDisplayMode(size);
+			Display.setTitle(TITLE);
+			Display.setVSyncEnabled(true);
+			Display.setResizable(false);
+			Display.setFullscreen(false);
+			Display.create();
+		} catch (LWJGLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void initGL() {
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
 	}
 
 	public void start() {
@@ -25,8 +49,14 @@ public class Bakudan {
 		gameLoop();
 	}
 
+	// TODO: Mitchell stel even de juiste tick time etc. in?
 	public void gameLoop() {
 		while (running) {
+			if (Display.isCloseRequested()) {
+				running = false;
+				return;
+			}
+			Display.sync(60);
 			tick();
 			render();
 		}
@@ -37,7 +67,8 @@ public class Bakudan {
 	}
 
 	public void render() {
-
+		Display.update();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 	public void stop() {
