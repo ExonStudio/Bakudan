@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<TextureAtlas>
+    <sprite n="MOB_PLAYER_RED_F0" x="0" y="0" w="32" h="32" a="3Y950"/>
+	<sprite n="MOB_PLAYER_RED_F1" x="32" y="0" w="32" h="32" a="3Y950"/>
+	<sprite n="MOB_PLAYER_RED_F2" x="64" y="0" w="32" h="32" a="3Y950"/>
+	<sprite n="MOB_PLAYER_RED_F3" x="96" y="0" w="32" h="32" a="3Y950"/>
+	
+	<sprite n="MOB_PLAYER_GREEN_F0" x="128" y="0" w="32" h="32" a=""/>
+	<sprite n="MOB_PLAYER_GREEN_F1" x="160" y="0" w="32" h="32" a=""/>
+	<sprite n="MOB_PLAYER_GREEN_F2" x="192" y="0" w="32" h="32" a=""/>
+	<sprite n="MOB_PLAYER_GREEN_F3" x="224" y="0" w="32" h="32" a=""/>
+	
+	<sprite n="MOB_MOUSE_F0" x="265" y="0" w="32" h="32" a=""/>
+	<sprite n="MOB_MOUSE_F1" x="288" y="0" w="32" h="32" a=""/>
+	<sprite n="MOB_MOUSE_F2" x="320" y="0" w="32" h="32" a=""/>
+	<sprite n="MOB_MOUSE_F3" x="352" y="0" w="32" h="32" a=""/>
+	
+	
+	<sprite n="TILE_GRASS" x="0" y="128" w="32" h="32" a=""/>
+	<sprite n="TILE_SAND" x="32" y="128" w="32" h="32" a=""/>
+	<sprite n="TILE_STONE" x="64" y="128" w="32" h="32" a=""/>
+	<sprite n="TILE_COBBLESTONE" x="96" y="128" w="32" h="32" a=""/>
+	<sprite n="TILE_COBBLESTONE_MOSSY" x="160" y="128" w="32" h="32" a=""/>
+	<sprite n="TILE_WATER_DEEP" x="160" y="128" w="32" h="32" a="2Y250"/>
+	<sprite n="TILE_WATER_UNDEEP" x="193" y="128" w="32" h="32" a="2Y250"/>
+	<sprite n="TILE_WATER_SWAMP" x="225" y="128" w="32" h="32" a="2Y250"/>
+	<sprite n="TILE_LAVA" x="257" y="128" w="32" h="32" a="2Y500"/>
+	
+	<sprite n="OBJ_FLOWER_RED" x="512" y="128" w="32" h="32" a=""/>
+	<sprite n="OBJ_FLOWER_YELLOW" x="544" y="128" w="32" h="32" a=""/>
+	<sprite n="OBJ_FLOWER_PURPLE" x="576" y="128" w="32" h="32" a=""/>
+	<sprite n="OBJ_FLOWER_BLUE" x="608" y="128" w="32" h="32" a=""/>
+	<sprite n="OBJ_FLOWERS_RED" x="512" y="160" w="32" h="32" a=""/>
+	<sprite n="OBJ_FLOWERS_YELLOW" x="544" y="160" w="32" h="32" a=""/>
+	<sprite n="OBJ_FLOWERS_PURPLE" x="576" y="160" w="32" h="32" a=""/>
+	<sprite n="OBJ_FLOWERS_BLUE" x="608" y="160" w="32" h="32" a=""/>
+	<sprite n="OBJ_ROCK" x="512" y="192" w="32" h="32" a=""/>
+	<sprite n="OBJ_WALL_BRICK" x="640" y="128" w="32" h="32" a=""/>
+	<sprite n="OBJ_GRASS_NOISE" x="640" y="160" w="32" h="32" a=""/>
+</TextureAtlas>
