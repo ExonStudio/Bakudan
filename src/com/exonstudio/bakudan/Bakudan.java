@@ -6,6 +6,8 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import com.exonstudio.bakudan.logger.Logger;
+
 public class Bakudan {
 
 	public static final int WIDTH = 800;
@@ -39,6 +41,10 @@ public class Bakudan {
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
 
+		glOrtho(0, Display.getWidth(), Display.getHeight(), 0, 1, -1);
+		glColor3f(1, 1, 1);
+		glTranslatef(1, 1, 1);
+
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 	}
@@ -63,12 +69,13 @@ public class Bakudan {
 	}
 
 	public void tick() {
-
+		Logger.log("TICK");
 	}
 
 	public void render() {
 		Display.update();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glRectf(-0.75f / 30, -0.75f / 30, 0.75f / 30, 0.75f / 30);
 	}
 
 	public void stop() {
