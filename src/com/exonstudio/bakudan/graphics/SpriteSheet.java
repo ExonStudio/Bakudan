@@ -10,8 +10,11 @@ import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
+
+import com.exonstudio.bakudan.logger.Logger;
 
 public class SpriteSheet {
 	private static Texture spritesheet;
@@ -42,8 +45,7 @@ public class SpriteSheet {
 				String a = spriteElement.getAttribute("a").getValue();
 				Sprite sprite = new Sprite(name, x, y, w, h, a);
 				spriteMap.put(sprite.getName(), sprite);
-				// Console.log("Loaded SpriteSheet data for " +
-				// sprite.getName());
+				Logger.log("Loaded SpriteSheet data for " + sprite.getName());
 			}
 		} catch (JDOMException e) {
 			e.printStackTrace();
@@ -55,9 +57,9 @@ public class SpriteSheet {
 	private static void loadSheetImage(String name, String ext) {
 		try {
 			spritesheet = TextureLoader.getTexture(ext.toUpperCase(), SpriteSheet.class.getResourceAsStream("/textures/" + name + "." + ext));
-			// Console.log("Loaded SpriteSheet");
+			Logger.log("Loaded SpriteSheet");
 		} catch (IOException e) {
-			// Console.log(e.getMessage());
+			Logger.log(e.getMessage());
 		}
 	}
 
@@ -93,12 +95,17 @@ public class SpriteSheet {
 		// glEnable(GL_TEXTURE_RECTANGLE_ARB);
 		spritesheet.bind();
 
-		double Tx = (sprite.getX() * 1.0) / spritesheet.getTextureWidth();
-		double Ty = (sprite.getY() * 1.0) / spritesheet.getTextureHeight();
-		double Tx2 = (sprite.getX() * 1.0 + sprite.getWidth()) / spritesheet.getTextureWidth();
-		double Ty2 = (sprite.getY() * 1.0 + sprite.getHeight()) / spritesheet.getTextureHeight();
+		double Tx = ((sprite.getX() * 1.0) / spritesheet.getTextureWidth());
+		double Ty = ((sprite.getY() * 1.0) / spritesheet.getTextureHeight());
+		double Tx2 = ((sprite.getX() * 1.0 + sprite.getWidth()) / spritesheet.getTextureWidth());
+		double Ty2 = ((sprite.getY() * 1.0 + sprite.getHeight()) / spritesheet.getTextureHeight());
 		// x *= 2;
 		// y *= 2;
+
+		double x2 = (1.0 / Display.getWidth() * x);
+		double y2 = (1.0 / Display.getHeight() * y);
+		double w2 = (1.0 / Display.getWidth() * w);
+		double h2 = (1.0 / Display.getHeight() * h);
 
 		if (r != 0) {
 			glRotated(r, 0.0, 0.0, 1.0);
@@ -107,17 +114,15 @@ public class SpriteSheet {
 		glLoadIdentity();
 		glBegin(GL_QUADS);
 		glTexCoord2d(Tx, Ty);
-		glVertex2d(x, y);
+		glVertex2d(x2, y2);
 		glTexCoord2d(Tx2, Ty);
-		glVertex2d(x + w, y);
+		glVertex2d(x2 + w2, y2);
 		glTexCoord2d(Tx2, Ty2);
-		glVertex2d(x + w, y + h);
+		glVertex2d(x2 + w2, y2 + h2);
 		glTexCoord2d(Tx, Ty2);
-		glVertex2d(x, y + h);
+		glVertex2d(x2, y2 + h2);
 		glEnd();
 
-		// glBindTexture(GL_TEXTURE_RECTANGLE_ARB, 0);
-		// glDisable(GL_TEXTURE_RECTANGLE_ARB);
 	}
 
 	public static Sprite getSprite(String name) {
