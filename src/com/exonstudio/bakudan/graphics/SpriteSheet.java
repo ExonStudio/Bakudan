@@ -64,52 +64,72 @@ public class SpriteSheet {
 	}
 
 	public static void draw(Sprite sprite, int x, int y) {
-		draw(sprite, x, y, sprite.getWidth(), sprite.getHeight(), 0);
+		draw(sprite, x, y, sprite.getWidth(), sprite.getHeight(), Face.TOP);
 	}
 
-	public static void draw(Sprite sprite, int x, int y, int r) {
-		draw(sprite, x, y, sprite.getWidth(), sprite.getHeight(), r);
+	public static void draw(Sprite sprite, int x, int y, Face f) {
+		draw(sprite, x, y, sprite.getWidth(), sprite.getHeight(), f);
 	}
 
 	public static void draw(int x, int y) {
-		draw(currentSprite, x, y, currentSprite.getWidth(), currentSprite.getHeight(), 0);
+		draw(currentSprite, x, y, currentSprite.getWidth(), currentSprite.getHeight(), Face.TOP);
 	}
 
-	public static void draw(int x, int y, int r) {
-		draw(currentSprite, x, y, currentSprite.getWidth(), currentSprite.getHeight(), r);
+	public static void draw(int x, int y, Face f) {
+		draw(currentSprite, x, y, currentSprite.getWidth(), currentSprite.getHeight(), f);
 	}
 
 	public static void draw(int x, int y, int w, int h) {
-		draw(currentSprite, x, y, w, h, 0);
+		draw(currentSprite, x, y, w, h, Face.TOP);
 	}
 
-	public static void draw(int x, int y, int w, int h, int r) {
-		draw(currentSprite, x, y, w, h, r);
+	public static void draw(int x, int y, int w, int h, Face f) {
+		draw(currentSprite, x, y, w, h, f);
 	}
 
 	public static void draw(Sprite sprite, int x, int y, int w, int h) {
-		draw(sprite, x, y, w, h, 0);
+		draw(sprite, x, y, w, h, Face.RIGHT);
 	}
 
-	public static void draw(Sprite sprite, int x, int y, int w, int h, int r) {
+	public static void draw(Sprite sprite, int x, int y, int w, int h, Face f) {
 		// glEnable(GL_TEXTURE_RECTANGLE_ARB);
 		spritesheet.bind();
-
-		double Tx = ((sprite.getX() * 1.0) / spritesheet.getTextureWidth());
-		double Ty = ((sprite.getY() * 1.0) / spritesheet.getTextureHeight());
-		double Tx2 = ((sprite.getX() * 1.0 + sprite.getWidth()) / spritesheet.getTextureWidth());
-		double Ty2 = ((sprite.getY() * 1.0 + sprite.getHeight()) / spritesheet.getTextureHeight());
-		// x *= 2;
-		// y *= 2;
 
 		double x2 = (1.0 / Display.getWidth() * x);
 		double y2 = (1.0 / Display.getHeight() * y);
 		double w2 = (1.0 / Display.getWidth() * w);
 		double h2 = (1.0 / Display.getHeight() * h);
 
-		if (r != 0) {
-			glRotated(r, 0.0, 0.0, 1.0);
+		double ssX = ((sprite.getX() * 1.0) / spritesheet.getTextureWidth());
+		double ssY = ((sprite.getY() * 1.0) / spritesheet.getTextureHeight());
+		double ssX2 = ((sprite.getX() * 1.0 + sprite.getWidth()) / spritesheet.getTextureWidth());
+		double ssY2 = ((sprite.getY() * 1.0 + sprite.getHeight()) / spritesheet.getTextureHeight());
+
+		double Tx, Ty, Tx2, Ty2;
+
+		if (f == Face.RIGHT) {
+			Tx = ssY2;
+			Ty = ssX;
+			Tx2 = ssY;
+			Ty2 = ssX2;
+		} else if (f == Face.BOTTOM) {
+			Tx = ssX2;
+			Ty = ssY2;
+			Tx2 = ssX;
+			Ty2 = ssY;
+		} else if (f == Face.LEFT) {
+			Tx = ssY;
+			Ty = ssX2;
+			Tx2 = ssY2;
+			Ty2 = ssX;
+		} else {
+			Tx = ssX;
+			Ty = ssY;
+			Tx2 = ssX2;
+			Ty2 = ssY2;
 		}
+
+		Logger.log(Tx + "" + Ty + "" + Tx2 + "" + Ty2);
 
 		glLoadIdentity();
 		glBegin(GL_QUADS);
