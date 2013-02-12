@@ -7,6 +7,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 
+import com.exonstudio.bakudan.graphics.Face;
 import com.exonstudio.bakudan.graphics.SpriteSheet;
 import com.exonstudio.bakudan.logger.Logger;
 import com.exonstudio.tools.Time;
@@ -21,6 +22,7 @@ public class Bakudan {
 
 	public float vierkantx;
 	public float vierkanty;
+	public Face vierkantface;
 
 	private DisplayMode size;
 	public TickTimer tickTimer = new TickTimer();
@@ -62,6 +64,10 @@ public class Bakudan {
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
 			vierkanty += 0.02f;
+		}
+
+		if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
+			vierkantface = Face.LEFT;
 		}
 	}
 
@@ -128,7 +134,7 @@ public class Bakudan {
 		// glTranslatef(vierkantx, vierkanty, 0);
 		// glRectf(-0.75f / 5, -0.75f / 5, 0.75f / 5, 0.75f / 5);
 
-		SpriteSheet.draw(SpriteSheet.getSprite("test"), Math.round(vierkantx * Display.getWidth()), Math.round(vierkanty * Display.getHeight()));
+		SpriteSheet.draw(SpriteSheet.getSprite("test"), Math.round(vierkantx * Display.getWidth()), Math.round(vierkanty * Display.getHeight()), vierkantface);
 	}
 
 	public void stop() {
