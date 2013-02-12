@@ -96,6 +96,11 @@ public class Bakudan {
 				stop();
 			} else if (!Display.isActive()) {
 				// Pause game
+				if (Time.calculatePassedTime(lastTick) >= 1000 / 60) {
+					lastTick = Time.getTime();
+					tick();
+				}
+				Display.update();
 			} else {
 				if (Time.calculatePassedTime(lastTick) >= 1000 / 60) {
 					lastTick = Time.getTime();
