@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <TextureAtlas>
-	<sprite n="test" x="0" y="0" w="64" h="64" a="7X500"/>
+	<sprite n="test" x="0" y="0" w="64" h="64" a="6X50"/>
 </TextureAtlas>
