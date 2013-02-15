@@ -95,52 +95,27 @@ public class SpriteSheet {
 		// glEnable(GL_TEXTURE_RECTANGLE_ARB);
 		spritesheet.bind();
 
-		double x2 = (1.0 / Display.getWidth() * x);
-		double y2 = (1.0 / Display.getHeight() * y);
-		double w2 = (1.0 / Display.getWidth() * w);
-		double h2 = (1.0 / Display.getHeight() * h);
+		float x2 = (float) (1.0 / Display.getWidth() * x);
+		float y2 = (float) (1.0 / Display.getHeight() * y);
+		float w2 = (float) (1.0 / Display.getWidth() * w);
+		float h2 = (float) (1.0 / Display.getHeight() * h);
 
-		double ssX = ((sprite.getX() * 1.0) / spritesheet.getTextureWidth());
-		double ssY = ((sprite.getY() * 1.0) / spritesheet.getTextureHeight());
-		double ssX2 = ((sprite.getX() * 1.0 + sprite.getWidth()) / spritesheet.getTextureWidth());
-		double ssY2 = ((sprite.getY() * 1.0 + sprite.getHeight()) / spritesheet.getTextureHeight());
-
-		double Tx, Ty, Tx2, Ty2;
-
-		if (f == Face.RIGHT) {
-			Tx = ssY2;
-			Ty = ssX;
-			Tx2 = ssY;
-			Ty2 = ssX2;
-		} else if (f == Face.BOTTOM) {
-			Tx = ssX2;
-			Ty = ssY2;
-			Tx2 = ssX;
-			Ty2 = ssY;
-		} else if (f == Face.LEFT) {
-			Tx = ssY;
-			Ty = ssX2;
-			Tx2 = ssY2;
-			Ty2 = ssX;
-		} else {
-			Tx = ssX;
-			Ty = ssY;
-			Tx2 = ssX2;
-			Ty2 = ssY2;
-		}
-
-		Logger.log(Tx + "" + Ty + "" + Tx2 + "" + Ty2);
+		float Tx = (float) ((sprite.getX() * 1.0) / spritesheet.getTextureWidth());
+		float Ty = (float) ((sprite.getY() * 1.0) / spritesheet.getTextureHeight());
+		float Tx2 = (float) ((sprite.getX() * 1.0 + sprite.getWidth()) / spritesheet.getTextureWidth());
+		float Ty2 = (float) ((sprite.getY() * 1.0 + sprite.getHeight()) / spritesheet.getTextureHeight());
 
 		glLoadIdentity();
 		glBegin(GL_QUADS);
-		glTexCoord2d(Tx, Ty);
-		glVertex2d(x2, y2);
-		glTexCoord2d(Tx2, Ty);
-		glVertex2d(x2 + w2, y2);
-		glTexCoord2d(Tx2, Ty2);
-		glVertex2d(x2 + w2, y2 + h2);
-		glTexCoord2d(Tx, Ty2);
-		glVertex2d(x2, y2 + h2);
+
+		glTexCoord2f(Tx, Ty);
+		glVertex2f(x2, y2);
+		glTexCoord2f(Tx2, Ty);
+		glVertex2f(x2 + w2, y2);
+		glTexCoord2f(Tx2, Ty2);
+		glVertex2f(x2 + w2, y2 + h2);
+		glTexCoord2f(Tx, Ty2);
+		glVertex2f(x2, y2 + h2);
 		glEnd();
 
 	}
