@@ -10,6 +10,7 @@ import org.lwjgl.opengl.DisplayMode;
 import com.exonstudio.bakudan.graphics.Face;
 import com.exonstudio.bakudan.graphics.SpriteSheet;
 import com.exonstudio.bakudan.logger.Logger;
+import com.exonstudio.bakudan.map.TileMap;
 import com.exonstudio.tools.Time;
 
 public class Bakudan {
@@ -26,6 +27,8 @@ public class Bakudan {
 
 	private DisplayMode size;
 	public TickTimer tickTimer = new TickTimer();
+
+	public static TileMap map = new TileMap();
 
 	public Bakudan() {
 		size = new DisplayMode(WIDTH, HEIGHT);
@@ -133,7 +136,7 @@ public class Bakudan {
 		glLoadIdentity();
 		// glTranslatef(vierkantx, vierkanty, 0);
 		// glRectf(-0.75f / 5, -0.75f / 5, 0.75f / 5, 0.75f / 5);
-
+		map.render();
 		SpriteSheet.draw(SpriteSheet.getSprite("test"), Math.round(vierkantx * Display.getWidth()), Math.round(vierkanty * Display.getHeight()), vierkantface);
 	}
 
