@@ -3,7 +3,7 @@ package com.exonstudio.bakudan.map;
 import com.exonstudio.bakudan.graphics.SpriteSheet;
 
 public enum Tile {
-	STONE("STONE", "stone1", "stone", true, false);
+	STONE("STONE", "stone", "stone", true, false);
 
 	private String name;
 	private String spriteName;
