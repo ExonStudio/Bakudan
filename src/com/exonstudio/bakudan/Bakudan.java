@@ -9,20 +9,19 @@ import org.lwjgl.opengl.DisplayMode;
 
 import com.exonstudio.bakudan.graphics.Face;
 import com.exonstudio.bakudan.graphics.SpriteSheet;
-import com.exonstudio.bakudan.logger.Logger;
 import com.exonstudio.bakudan.map.TileMap;
 import com.exonstudio.tools.Time;
 
 public class Bakudan {
 
-	public static final int WIDTH = 800;
-	public static final int HEIGHT = 600;
+	public static final int WIDTH = 816;
+	public static final int HEIGHT = 720;
 	public static final String TITLE = "Bakudan";
 	public boolean running = false;
 	public long lastTick = 0;
 
-	public float vierkantx;
-	public float vierkanty;
+	public int vierkantx = WIDTH / 2 - 32;
+	public int vierkanty = HEIGHT / 2 - 32;
 	public Face vierkantface;
 
 	private DisplayMode size;
@@ -36,6 +35,7 @@ public class Bakudan {
 		initScreen();
 		initGL();
 		SpriteSheet.init();
+		SpriteSheet.setRecalculate(1088, 960);
 	}
 
 	public void initScreen() {
@@ -53,20 +53,19 @@ public class Bakudan {
 
 	public void moveVierkant() {
 		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-			vierkantx += 0.02f;
-			Logger.log("+1 naar rechts");
+			vierkantx += 1;
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-			vierkanty -= 0.02f;
+			vierkanty += 1;
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-			vierkantx -= 0.02f;
+			vierkantx -= 1;
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-			vierkanty += 0.02f;
+			vierkanty -= 1;
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
@@ -137,7 +136,8 @@ public class Bakudan {
 		// glTranslatef(vierkantx, vierkanty, 0);
 		// glRectf(-0.75f / 5, -0.75f / 5, 0.75f / 5, 0.75f / 5);
 		map.render();
-		SpriteSheet.draw(SpriteSheet.getSprite("test"), Math.round(vierkantx * Display.getWidth()), Math.round(vierkanty * Display.getHeight()), vierkantface);
+		// Logger.log(vierkantx + " " + vierkanty);
+		SpriteSheet.draw(SpriteSheet.getSprite("test"), vierkantx, vierkanty, vierkantface);
 	}
 
 	public void stop() {
