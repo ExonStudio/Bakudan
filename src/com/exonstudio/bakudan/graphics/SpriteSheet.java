@@ -21,8 +21,13 @@ public class SpriteSheet {
 	private static Map<String, Sprite> spriteMap = new HashMap<String, Sprite>();
 	private static Sprite currentSprite;
 
+	private static int VirtualX = 1088;
+	private static int VirtualY = 960;
+
 	public static void init() {
 		loadSheet("gfx");
+		VirtualX = Display.getWidth();
+		VirtualY = Display.getHeight();
 	}
 
 	private static void loadSheet(String name) {
@@ -63,6 +68,11 @@ public class SpriteSheet {
 		}
 	}
 
+	public static void setRecalculate(int maxX, int maxY) {
+		VirtualX = maxX;
+		VirtualY = maxY;
+	}
+
 	public static void draw(Sprite sprite, int x, int y) {
 		draw(sprite, x, y, sprite.getWidth(), sprite.getHeight(), Face.TOP);
 	}
@@ -95,27 +105,30 @@ public class SpriteSheet {
 		// glEnable(GL_TEXTURE_RECTANGLE_ARB);
 		spritesheet.bind();
 
-		float x2 = (float) (1.0 / Display.getWidth() * x);
-		float y2 = (float) (1.0 / Display.getHeight() * y);
-		float w2 = (float) (1.0 / Display.getWidth() * w);
-		float h2 = (float) (1.0 / Display.getHeight() * h);
+		float x2 = (float) (-1.0 + (1.0 / VirtualX * x) * 2);
+		float y2 = (float) -(-1.0 + (1.0 / VirtualY * y) * 2);
+		float w2 = (float) (2.0 / VirtualX * w);
+		float h2 = (float) (2.0 / VirtualY * h);
 
 		float Tx = (float) ((sprite.getX() * 1.0) / spritesheet.getTextureWidth());
 		float Ty = (float) ((sprite.getY() * 1.0) / spritesheet.getTextureHeight());
 		float Tx2 = (float) ((sprite.getX() * 1.0 + sprite.getWidth()) / spritesheet.getTextureWidth());
 		float Ty2 = (float) ((sprite.getY() * 1.0 + sprite.getHeight()) / spritesheet.getTextureHeight());
 
+		// Logger.log(x + " " + x2 + " " + y + " " + y2);
+
 		glLoadIdentity();
 		glBegin(GL_QUADS);
 
 		glTexCoord2f(Tx, Ty);
-		glVertex2f(x2, y2);
+		glVertex2f(x2, y2 - h2);
 		glTexCoord2f(Tx2, Ty);
-		glVertex2f(x2 + w2, y2);
+		glVertex2f(x2 + w2, y2 - h2);
 		glTexCoord2f(Tx2, Ty2);
-		glVertex2f(x2 + w2, y2 + h2);
+		glVertex2f(x2 + w2, y2);
 		glTexCoord2f(Tx, Ty2);
-		glVertex2f(x2, y2 + h2);
+		glVertex2f(x2, y2);
+
 		glEnd();
 
 	}
