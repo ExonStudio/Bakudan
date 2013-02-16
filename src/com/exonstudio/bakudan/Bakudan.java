@@ -9,7 +9,7 @@ import org.lwjgl.opengl.DisplayMode;
 
 import com.exonstudio.bakudan.graphics.Face;
 import com.exonstudio.bakudan.graphics.SpriteSheet;
-import com.exonstudio.bakudan.map.TileMap;
+import com.exonstudio.bakudan.room.Room;
 import com.exonstudio.tools.Time;
 
 public class Bakudan {
@@ -27,7 +27,8 @@ public class Bakudan {
 	private DisplayMode size;
 	public TickTimer tickTimer = new TickTimer();
 
-	public static TileMap map = new TileMap();
+	// public static TileMap map = new TileMap();
+	public static Room map = new Room(17, 15, 0);
 
 	public Bakudan() {
 		size = new DisplayMode(WIDTH, HEIGHT);
