@@ -93,11 +93,10 @@ public class SpriteSheet {
 
 	public static void draw(Sprite sprite, int x, int y, int w, int h, Face f) {
 		// glEnable(GL_TEXTURE_RECTANGLE_ARB);
-		glPushMatrix();
 		spritesheet.bind();
 
-		float x2 = (float) (1.0 / Display.getWidth() * x) - Display.getWidth() / 2;
-		float y2 = (float) (1.0 / Display.getHeight() * y) - Display.getWidth() / 2;
+		float x2 = (float) (1.0 / Display.getWidth() * x);
+		float y2 = (float) (1.0 / Display.getHeight() * y);
 		float w2 = (float) (1.0 / Display.getWidth() * w);
 		float h2 = (float) (1.0 / Display.getHeight() * h);
 
@@ -108,18 +107,17 @@ public class SpriteSheet {
 
 		glLoadIdentity();
 		glBegin(GL_QUADS);
-		{
-			glTexCoord2f(Tx, Ty);
-			glVertex2f(x2, y2);
-			glTexCoord2f(Tx2, Ty);
-			glVertex2f(x2 + w2, y2);
-			glTexCoord2f(Tx2, Ty2);
-			glVertex2f(x2 + w2, y2 + h2);
-			glTexCoord2f(Tx, Ty2);
-			glVertex2f(x2, y2 + h2);
-		}
+
+		glTexCoord2f(Tx, Ty);
+		glVertex2f(x2, y2);
+		glTexCoord2f(Tx2, Ty);
+		glVertex2f(x2 + w2, y2);
+		glTexCoord2f(Tx2, Ty2);
+		glVertex2f(x2 + w2, y2 + h2);
+		glTexCoord2f(Tx, Ty2);
+		glVertex2f(x2, y2 + h2);
 		glEnd();
-		glPopMatrix();
+
 	}
 
 	public static Sprite getSprite(String name) {
