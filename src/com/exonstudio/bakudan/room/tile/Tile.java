@@ -1,13 +1,12 @@
 package com.exonstudio.bakudan.room.tile;
 
-import com.exonstudio.bakudan.graphics.Sprite;
+import com.exonstudio.bakudan.graphics.SpriteSheet;
 
 public class Tile {
 
-	// TODO: Call by name not static sprite
-	Sprite sprite;
+	String sprite;
 
-	public Tile(Sprite sprite) {
+	public Tile(String sprite) {
 		this.sprite = sprite;
 	}
 
@@ -16,6 +15,10 @@ public class Tile {
 
 	public boolean isSolid() {
 		return false;
+	}
+
+	public void selectSprite() {
+		SpriteSheet.setCurrentSprite(sprite);
 	}
 
 }
