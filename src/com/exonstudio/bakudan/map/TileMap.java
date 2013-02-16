@@ -38,7 +38,7 @@ public class TileMap {
 		for (int x = 0; x <= 17; x++) {
 			for (int y = 0; y <= 15; y++) {
 				for (int d = 0; d <= 2; d++) {
-					Logger.log(x + " " + y + " " + d + " ");
+					// Logger.log(x + " " + y + " " + d + " ");
 					currentMap[x][y][d].selectSprite();
 					SpriteSheet.draw(x * 64, y * 64);
 				}
