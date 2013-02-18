@@ -9,6 +9,7 @@ import org.lwjgl.opengl.DisplayMode;
 
 import com.exonstudio.bakudan.graphics.Face;
 import com.exonstudio.bakudan.graphics.SpriteSheet;
+import com.exonstudio.bakudan.room.ClassicRoom;
 import com.exonstudio.bakudan.room.Room;
 import com.exonstudio.tools.Time;
 
@@ -28,7 +29,7 @@ public class Bakudan {
 	public TickTimer tickTimer = new TickTimer();
 
 	// public static TileMap map = new TileMap();
-	public static Room map = new Room(17, 15, 0);
+	public static Room map = new ClassicRoom(17, 15, 0);
 
 	public Bakudan() {
 		size = new DisplayMode(WIDTH, HEIGHT);
@@ -93,8 +94,7 @@ public class Bakudan {
 	}
 
 	public void start() {
-		if (running)
-			return;
+		if (running) return;
 		running = true;
 		gameLoop();
 	}
@@ -124,8 +124,7 @@ public class Bakudan {
 	// Tick update de game, bijvoorbeeld coördinaten van speler en het rondlopen
 	// van mobs.
 	public void tick() {
-		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
-			stop();
+		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) stop();
 		moveVierkant();
 	}
 
@@ -142,8 +141,7 @@ public class Bakudan {
 	}
 
 	public void stop() {
-		if (!running)
-			return;
+		if (!running) return;
 		running = false;
 		System.exit(0);
 	}
