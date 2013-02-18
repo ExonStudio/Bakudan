@@ -6,6 +6,8 @@ public class Tile {
 
 	String sprite;
 
+	public static Tile stone = new StoneTile("stone");
+
 	public Tile(String sprite) {
 		this.sprite = sprite;
 	}
