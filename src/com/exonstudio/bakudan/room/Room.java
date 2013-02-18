@@ -5,32 +5,32 @@ import com.exonstudio.bakudan.room.tile.Tile;
 
 public class Room {
 
-	public int blocks_width = 17;
-	public int blocks_height = 15;
+	public int width;
+	public int height;
 	public Tile[] blocks;
 
 	public long millis = 0;
 
 	public Room(int width, int height, int millis) {
-		blocks_width = width;
-		blocks_height = height;
-		blocks = new Tile[blocks_height * blocks_width];
+		this.width = width;
+		this.height = height;
 		this.millis = millis;
+		blocks = new Tile[width * height];
 		generateLevel();
 	}
 
 	public void generateLevel() {
-		for (int x = 0; x < blocks_width; x++) {
-			for (int y = 0; y < blocks_height; y++) {
-				blocks[x * y] = new Tile("stone");
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				blocks[x + y * width] = Tile.stone;
 			}
 		}
 	}
 
 	public void render() {
-		for (int x = 0; x < blocks_width; x++) {
-			for (int y = 0; y < blocks_height; y++) {
-				blocks[x * y].selectSprite();
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
+				blocks[x + y * width].selectSprite();
 				SpriteSheet.draw(x * 64, y * 64);
 			}
 		}
