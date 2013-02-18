@@ -55,24 +55,28 @@ public class Bakudan {
 
 	public void moveVierkant() {
 		if (Keyboard.isKeyDown(Keyboard.KEY_RIGHT)) {
-			vierkantx += 1;
+			vierkantx += 2;
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-			vierkanty += 1;
+			vierkanty += 2;
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_LEFT)) {
-			vierkantx -= 1;
+			vierkantx -= 2;
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-			vierkanty -= 1;
+			vierkanty -= 2;
 		}
 
 		if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
 			vierkantface = Face.LEFT;
 		}
+		if (vierkantx < 0)
+			vierkantx = 0;
+		if (vierkanty < 0)
+			vierkanty = 0;
 	}
 
 	public void initGL() {
