@@ -73,6 +73,7 @@ public class Bakudan {
 		if (Keyboard.isKeyDown(Keyboard.KEY_R)) {
 			vierkantface = Face.LEFT;
 		}
+
 		if (vierkantx < 0)
 			vierkantx = 0;
 		if (vierkanty < 0)
