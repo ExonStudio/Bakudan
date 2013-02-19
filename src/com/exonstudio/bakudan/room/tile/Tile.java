@@ -6,7 +6,8 @@ public class Tile {
 
 	String sprite;
 
-	public static Tile stone = new StoneTile("stone");
+	public static Tile stone = new Tile("stone");
+	public static Tile test = new Tile("test");
 
 	public Tile(String sprite) {
 		this.sprite = sprite;
