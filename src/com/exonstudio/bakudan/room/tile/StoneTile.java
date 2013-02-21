@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.exonstudio.bakudan.room.tile;
 
 public class StoneTile extends Tile {
