@@ -9,6 +9,7 @@ package com.exonstudio.exnet.protocol;
  */
 public enum ExNetPackage {
 	STARTCONNECTION,
+	SENDGAMEID,
 	WELCOME;
 
 	public byte tobyte() {

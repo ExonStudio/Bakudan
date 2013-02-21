@@ -17,14 +17,14 @@ import com.exonstudio.exnet.protocol.ExNetPackage;
  */
 public class ExNet {
 
-	DatagramSocket connection;
+	DatagramSocket socket;
 	byte[] data;
 	InetAddress address;
 	int serverPort;
 	byte GameID;
 
 	public ExNet(String serverIP, int serverPort, byte GameID) throws SocketException, UnknownHostException {
-		connection = new DatagramSocket();
+		socket = new DatagramSocket();
 		data = new byte[256];
 		address = InetAddress.getByName(serverIP);
 		this.serverPort = serverPort;
@@ -32,6 +32,8 @@ public class ExNet {
 
 		DatagramPacket pack = null;
 		data[0] = ExNetPackage.STARTCONNECTION.tobyte();
+		data[1] = GameID;
 		pack = new DatagramPacket(data, data.length, address, serverPort);
 	}
+
 }
