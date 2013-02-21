@@ -74,10 +74,12 @@ public class Bakudan {
 			vierkantface = Face.LEFT;
 		}
 
-		if (vierkantx < 0)
+		if (vierkantx < 0) {
 			vierkantx = 0;
-		if (vierkanty < 0)
+		}
+		if (vierkanty < 0) {
 			vierkanty = 0;
+		}
 	}
 
 	public void initGL() {
@@ -99,8 +101,9 @@ public class Bakudan {
 	}
 
 	public void start() {
-		if (running)
+		if (running) {
 			return;
+		}
 		running = true;
 		gameLoop();
 	}
@@ -130,8 +133,9 @@ public class Bakudan {
 	// Tick update de game, bijvoorbeeld coördinaten van speler en het rondlopen
 	// van mobs.
 	public void tick() {
-		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE))
+		if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 			stop();
+		}
 		moveVierkant();
 	}
 
@@ -148,8 +152,9 @@ public class Bakudan {
 	}
 
 	public void stop() {
-		if (!running)
+		if (!running) {
 			return;
+		}
 		running = false;
 		System.exit(0);
 	}
